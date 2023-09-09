@@ -1,12 +1,14 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:http_tutorial/home_age.dart';
 import 'package:http_tutorial/team.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomePageState createState() => _HomePageState();
 }
 
@@ -37,7 +39,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Pretty"),
+        title: const Text("Petty"),
+        actions: [
+          IconButton(onPressed: () {
+           Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const MyHome()),
+            );
+          },
+           icon: const Icon(Icons.home),)
+        ],
       ),
       body: FutureBuilder<List<Team>>(
         future: getTeams(),
@@ -53,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                 itemCount: teams.length,
                 itemBuilder: (context, index) {
                   return Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.grey,
                     ),
                     child: ListTile(
