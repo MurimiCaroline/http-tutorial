@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http_tutorial/third_page.dart';
 
 class MyHome extends StatefulWidget {
   const MyHome({super.key});
@@ -34,6 +35,16 @@ class _MyHomeState extends State<MyHome> {
                 // Open Twitter App
               },
             ),
+            const SizedBox(height: 16),
+            CustomButton(
+              platform: 'Next Page',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ThirdPage()),
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -53,8 +64,7 @@ class CustomButton extends StatelessWidget {
       Text("Press the below button to follow me on $platform"),
       ElevatedButton(
         style: const ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(Colors.blueGrey)
-        ),
+            backgroundColor: MaterialStatePropertyAll(Colors.blueGrey)),
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
